@@ -56,7 +56,7 @@ export async function POST(request) {
         const assignee = await User.findById(assignedTo);
         if (assignee && assignee.email) {
           await resend.emails.send({
-            from: "Samriddhi Enterprises Taskflow <onboarding@resend.dev>",
+            from: "Samriddhi Enterprises Taskflow <support@sebooking.in>",
             to: assignee.email,
             subject: `New Task Assigned: ${title}`,
             html: `
