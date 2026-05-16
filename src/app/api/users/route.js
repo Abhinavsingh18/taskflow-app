@@ -54,11 +54,11 @@ export async function POST(request) {
     if (resend && email) {
       try {
         await resend.emails.send({
-          from: "TaskFlow <onboarding@resend.dev>", 
+          from: "Samriddhi Enterprises Taskflow <onboarding@resend.dev>", 
           to: email,
-          subject: "Welcome to TaskFlow - Your Account Details",
+          subject: "Welcome to Samriddhi Enterprises Taskflow - Your Account Details",
           html: `
-            <h2>Welcome to TaskFlow, ${name}!</h2>
+            <h2>Welcome to Samriddhi Enterprises Taskflow, ${name}!</h2>
             <p>Your head has created an account for you.</p>
             <p><strong>Username:</strong> ${username}</p>
             <p><strong>Password:</strong> ${password}</p>

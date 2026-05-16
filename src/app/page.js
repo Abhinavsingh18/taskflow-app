@@ -44,7 +44,7 @@ export default function LoginPage() {
     <div className="container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', flex: 1 }}>
       <div className="glass-card" style={{ maxWidth: '400px', margin: '0 auto', width: '100%' }}>
         <div className="text-center mb-4">
-          <h1>TaskFlow</h1>
+          <h1>Samriddhi Enterprises Taskflow</h1>
           <p>Login to your account</p>
         </div>
 

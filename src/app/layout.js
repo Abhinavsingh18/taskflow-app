@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "TaskFlow | Daily Task Management",
+  title: "Samriddhi Enterprises Taskflow | Daily Task Management",
   description: "A premium system for assigning and managing daily tasks.",
 };
 

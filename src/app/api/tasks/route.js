@@ -56,7 +56,7 @@ export async function POST(request) {
         const assignee = await User.findById(assignedTo);
         if (assignee && assignee.email) {
           await resend.emails.send({
-            from: "TaskFlow <onboarding@resend.dev>",
+            from: "Samriddhi Enterprises Taskflow <onboarding@resend.dev>",
             to: assignee.email,
             subject: `New Task Assigned: ${title}`,
             html: `
@@ -64,7 +64,7 @@ export async function POST(request) {
               <p><strong>Description:</strong> ${description || 'No description provided.'}</p>
               <p><strong>Due Date:</strong> ${new Date(dueDate).toLocaleDateString()}</p>
               <br/>
-              <p>Please log in to TaskFlow to view details and mark it as completed or add remarks.</p>
+              <p>Please log in to Samriddhi Enterprises Taskflow to view details and mark it as completed or add remarks.</p>
             `
           });
         }
