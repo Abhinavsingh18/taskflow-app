@@ -64,7 +64,7 @@ export async function POST(request) {
               <p><strong>Description:</strong> ${description || 'No description provided.'}</p>
               <p><strong>Due Date:</strong> ${new Date(dueDate).toLocaleDateString()}</p>
               <br/>
-              <p>Please log in to Samriddhi Enterprises Taskflow to view details and mark it as completed or add remarks.</p>
+              <p>Please log in here to view details and mark it as completed: <br/> <a href="https://tasks.sebooking.in/">https://tasks.sebooking.in/</a></p>
             `
           });
         }

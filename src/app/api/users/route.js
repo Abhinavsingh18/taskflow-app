@@ -63,7 +63,7 @@ export async function POST(request) {
             <p><strong>Username:</strong> ${username}</p>
             <p><strong>Password:</strong> ${password}</p>
             <br/>
-            <p>Please log in to check your assigned tasks.</p>
+            <p>Please log in here to check your assigned tasks: <a href="https://tasks.sebooking.in/">https://tasks.sebooking.in/</a></p>
           `
         });
       } catch (emailError) {
