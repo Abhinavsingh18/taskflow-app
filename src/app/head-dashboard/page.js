@@ -19,6 +19,7 @@ export default function HeadDashboard() {
   // New Member State
   const [memberName, setMemberName] = useState("");
   const [memberUsername, setMemberUsername] = useState("");
+  const [memberEmail, setMemberEmail] = useState("");
   const [memberPassword, setMemberPassword] = useState("");
 
   const router = useRouter();
@@ -77,11 +78,12 @@ export default function HeadDashboard() {
       const res = await fetch("/api/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: memberName, username: memberUsername, password: memberPassword })
+        body: JSON.stringify({ name: memberName, username: memberUsername, email: memberEmail, password: memberPassword })
       });
       if (res.ok) {
         setMemberName("");
         setMemberUsername("");
+        setMemberEmail("");
         setMemberPassword("");
         fetchData();
       }
@@ -144,6 +146,10 @@ export default function HeadDashboard() {
             <div className="form-group">
               <label className="form-label">Username</label>
               <input type="text" className="form-input" value={memberUsername} onChange={e => setMemberUsername(e.target.value)} required />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <input type="email" className="form-input" value={memberEmail} onChange={e => setMemberEmail(e.target.value)} required />
             </div>
             <div className="form-group">
               <label className="form-label">Password</label>

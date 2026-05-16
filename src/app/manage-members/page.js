@@ -65,6 +65,7 @@ function MemberCard({ member, onUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(member.name);
   const [username, setUsername] = useState(member.username);
+  const [email, setEmail] = useState(member.email || "");
   const [password, setPassword] = useState("");
 
   const handleSave = async () => {
@@ -72,7 +73,7 @@ function MemberCard({ member, onUpdate }) {
       const res = await fetch(`/api/users/${member._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, username, password: password || undefined })
+        body: JSON.stringify({ name, username, email, password: password || undefined })
       });
       if (res.ok) {
         setIsEditing(false);
@@ -109,6 +110,10 @@ function MemberCard({ member, onUpdate }) {
           <input type="text" className="form-input" value={username} onChange={e => setUsername(e.target.value)} required />
         </div>
         <div className="form-group">
+          <label className="form-label">Email</label>
+          <input type="email" className="form-input" value={email} onChange={e => setEmail(e.target.value)} />
+        </div>
+        <div className="form-group">
           <label className="form-label">New Password (leave blank to keep current)</label>
           <input type="password" className="form-input" value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter new password" />
         </div>
@@ -125,6 +130,7 @@ function MemberCard({ member, onUpdate }) {
       <div>
         <div style={{fontWeight: 'bold', fontSize: '1.25rem', marginBottom: '0.25rem'}}>{member.name}</div>
         <div style={{fontSize: '0.875rem', color: '#94a3b8', marginBottom: '0.25rem'}}>@{member.username}</div>
+        {member.email && <div style={{fontSize: '0.875rem', color: '#94a3b8', marginBottom: '0.25rem'}}>Email: {member.email}</div>}
         <div style={{fontSize: '0.875rem', color: '#94a3b8'}}>Password: ********</div>
       </div>
       <div className="flex gap-2">

@@ -13,13 +13,14 @@ export async function PUT(request, { params }) {
     if (!user || user.role !== "head") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
     await dbConnect();
-    const { name, username, password } = await request.json();
+    const { name, username, email, password } = await request.json();
 
     const targetUser = await User.findById(id);
     if (!targetUser) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
     if (name) targetUser.name = name;
     if (username) targetUser.username = username;
+    if (email !== undefined) targetUser.email = email;
     if (password) {
       targetUser.password = await bcrypt.hash(password, 10);
     }

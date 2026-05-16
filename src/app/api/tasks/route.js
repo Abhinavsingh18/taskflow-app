@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Task from "@/models/Task";
+import User from "@/models/User";
 import { verifyToken } from "@/lib/auth";
+import { Resend } from "resend";
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function GET(request) {
   try {
@@ -45,6 +49,29 @@ export async function POST(request) {
       assignedTo,
       dueDate
     });
+
+    // Send Task Assignment Email
+    if (resend) {
+      try {
+        const assignee = await User.findById(assignedTo);
+        if (assignee && assignee.email) {
+          await resend.emails.send({
+            from: "TaskFlow <onboarding@resend.dev>",
+            to: assignee.email,
+            subject: `New Task Assigned: ${title}`,
+            html: `
+              <h2>New Task Assigned: ${title}</h2>
+              <p><strong>Description:</strong> ${description || 'No description provided.'}</p>
+              <p><strong>Due Date:</strong> ${new Date(dueDate).toLocaleDateString()}</p>
+              <br/>
+              <p>Please log in to TaskFlow to view details and mark it as completed or add remarks.</p>
+            `
+          });
+        }
+      } catch (emailError) {
+        console.error("Failed to send task email:", emailError);
+      }
+    }
 
     return NextResponse.json({ task: newTask }, { status: 201 });
   } catch (error) {
